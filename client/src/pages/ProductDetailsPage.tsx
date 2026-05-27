@@ -6,6 +6,9 @@ import API from "../api/axios";
 
 import type { Product } from "../types/product.types";
 
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { addToCart } from "../features/cart/cartSlice";
+
 const ProductDetailsPage = () => {
   const { id } = useParams();
 
@@ -35,7 +38,7 @@ const ProductDetailsPage = () => {
       </div>
     );
   }
-
+const dispatch = useAppDispatch();
   return (
     <div className="p-10">
       <img
@@ -55,6 +58,16 @@ const ProductDetailsPage = () => {
       <p className="text-2xl font-bold mt-5">
         ${product.price}
       </p>
+
+      <button 
+        onClick={()=>dispatch(
+          addToCart({
+            ...product,
+            quantity:1
+          })
+        )} className="bg-black text-white px-5 py-3 mt-5"
+      > Add To Cart
+      </button>
     </div>
   );
 };

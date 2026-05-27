@@ -6,6 +6,7 @@ import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
+import CartPage from "./pages/CartPage";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
@@ -41,6 +42,11 @@ function App() {
         <Route
           path="/products/:id"
           element={<ProductDetailsPage />}
+        />
+
+        <Route
+          path="/cart"
+          element={<CartPage />}
         />
       </Routes>
     </>

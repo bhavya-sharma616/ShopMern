@@ -21,8 +21,9 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between p-4 border-b">
       <Link to="/">Home</Link>
-
+      
       <div className="flex gap-4">
+        <Link to ="/cart">Cart</Link>
         {!isAuthenticated ? (
           <>
             <Link to="/login">
