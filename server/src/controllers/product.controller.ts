@@ -71,3 +71,79 @@ export const getSingleProduct =
       });
     }
   };
+
+export const deleteProduct =
+  async (
+    req: Request,
+    res: Response
+  ): Promise<void> => {
+    try {
+      const product =
+        await Product.findById(
+          req.params.id
+        );
+
+      if (!product) {
+        res.status(404).json({
+          success: false,
+          message: "Product not found",
+        });
+
+        return;
+      }
+
+      await product.deleteOne();
+
+      res.status(200).json({
+        success: true,
+        message: "Product deleted",
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+      });
+    }
+  };
+
+export const updateProduct =
+  async (
+    req: Request,
+    res: Response
+  ): Promise<void> => {
+    try {
+      const product =
+        await Product.findById(
+          req.params.id
+        );
+
+      if (!product) {
+        res.status(404).json({
+          success: false,
+          message: "Product not found",
+        });
+
+        return;
+      }
+
+      const updatedProduct =
+        await Product.findByIdAndUpdate(
+          req.params.id,
+          req.body,
+          {
+            new: true,
+          }
+        );
+
+      res.status(200).json({
+        success: true,
+        product: updatedProduct,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: "Server Error",
+      });
+    }
+  };
+  

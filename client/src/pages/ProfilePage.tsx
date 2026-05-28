@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 
 import API from "../api/axios";
 
@@ -16,6 +17,7 @@ const ProfilePage = () => {
         setUser(res.data.user);
       } catch (error) {
         console.error(error);
+          toast.error("Something went wrong");
       }
     };
 

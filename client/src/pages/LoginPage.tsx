@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import API from "../api/axios";
 import { loginSuccess } from "../features/auth/authSlice";
-
+import { toast } from "react-hot-toast";
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -46,21 +46,22 @@ const LoginPage = () => {
       navigate("/");
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong");
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20">
+    <div className="flex justify-center items-center min-h-[80vh]">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4"
+        className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md flex flex-col gap-4"
       >
         <input
           type="email"
           name="email"
           placeholder="Email"
           onChange={handleChange}
-          className="border p-3"
+          className="border p-3 rounded"
         />
 
         <input
@@ -68,10 +69,15 @@ const LoginPage = () => {
           name="password"
           placeholder="Password"
           onChange={handleChange}
-          className="border p-3"
+          className="border p-3 rounded"
         />
 
-        <button className="bg-black text-white p-3">
+        <button className="bg-black text-white px-4 py-2 rounded 
+hover:bg-gray-800 
+hover:scale-105 
+active:scale-95 
+transition 
+duration-200">
           Login
         </button>
       </form>

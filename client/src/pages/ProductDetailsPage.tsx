@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import API from "../api/axios";
 
 import type { Product } from "../types/product.types";
-
+import { toast } from "react-hot-toast";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { addToCart } from "../features/cart/cartSlice";
 
@@ -25,6 +25,7 @@ const ProductDetailsPage = () => {
         setProduct(res.data.product);
       } catch (error) {
         console.error(error);
+          toast.error("Something went wrong");
       }
     };
 
@@ -56,18 +57,20 @@ const dispatch = useAppDispatch();
       </p>
 
       <p className="text-2xl font-bold mt-5">
-        ${product.price}
+        &#x20B9;{product.price}
       </p>
 
-      <button 
-        onClick={()=>dispatch(
-          addToCart({
-            ...product,
-            quantity:1
-          })
-        )} className="bg-black text-white px-5 py-3 mt-5"
-      > Add To Cart
-      </button>
+      <button
+  className="
+    bg-black text-white p-3 rounded
+    hover:bg-gray-800
+    hover:scale-105
+    active:scale-95
+    transition duration-200
+  "
+>
+  Add To Cart
+</button>
     </div>
   );
 };

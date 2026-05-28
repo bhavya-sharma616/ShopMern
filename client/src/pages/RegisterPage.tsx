@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../api/axios";
+import { toast } from "react-hot-toast";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -31,6 +32,7 @@ const RegisterPage = () => {
       console.log(res.data);
     } catch (error) {
       console.error(error);
+        toast.error("Something went wrong");
     }
   };
 
@@ -64,7 +66,12 @@ const RegisterPage = () => {
           className="border p-3"
         />
 
-        <button className="bg-black text-white p-3">
+        <button className="bg-black text-white px-4 py-2 rounded 
+hover:bg-gray-800 
+hover:scale-105 
+active:scale-95 
+transition 
+duration-200">
           Register
         </button>
       </form>
