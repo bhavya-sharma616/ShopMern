@@ -3,7 +3,7 @@ import mongoose, {
   Document,
 } from "mongoose";
 
-export interface IProduct
+export interface Product
   extends Document {
   title: string;
 
@@ -16,10 +16,23 @@ export interface IProduct
   category: string;
 
   stock: number;
+  reviews: Review[];
+  numReviews?: number;
+  averageRating?: number;
+}
+
+export interface Review {
+  user: string;
+
+  name: string;
+
+  rating: number;
+
+  comment: string;
 }
 
 const productSchema =
-  new Schema<IProduct>(
+  new Schema<Product>(
     {
       title: {
         type: String,
@@ -51,6 +64,38 @@ const productSchema =
         required: true,
         default: 0,
       },
+      reviews: [
+        {
+          user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+          },
+
+          name: {
+            type: String,
+            required: true,
+          },
+
+          rating: {
+            type: Number,
+            required: true,
+          },
+
+          comment: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      numReviews: {
+        type: Number,
+        default: 0,
+      },
+
+      averageRating: {
+        type: Number,
+        default: 0,
+      },
     },
 
     {
@@ -58,7 +103,7 @@ const productSchema =
     }
   );
 
-const Product = mongoose.model<IProduct>(
+const Product = mongoose.model<Product>(
   "Product",
   productSchema
 );

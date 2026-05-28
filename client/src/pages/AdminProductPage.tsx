@@ -73,15 +73,20 @@ const AdminProductsPage = () => {
               Edit
             </Link>
             <button
-              onClick={() =>
-                handleDelete(
-                  product._id
-                )
-              }
-              className="bg-red-500 text-white px-4 py-2"
-            >
-              Delete
-            </button>
+  onClick={() =>
+    handleDelete(product._id)
+  }
+  className="
+    bg-red-500 text-white
+    px-4 py-2 rounded
+    hover:bg-red-600
+    hover:scale-105
+    active:scale-95
+    transition duration-200
+  "
+>
+  Delete
+</button>
           </div>
         ))}
       </div>

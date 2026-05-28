@@ -5,6 +5,7 @@ import cors from "cors";
 import connectDB from "./config/db";
 import authRoutes from "./routes/auth.routes"
 import productRoutes from "./routes/product.routes";
+import userRoutes from "./routes/user.routes";
 
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/users",userRoutes)
 
 app.get("/", (_req: Request, res: Response) => {
   res.send("API Running...");

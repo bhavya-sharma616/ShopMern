@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 import type { Product } from "../types/product.types";
 
+
 interface Props {
   product: Product;
 }
@@ -31,7 +32,10 @@ const ProductCard = ({ product }: Props) => {
   <p className="text-gray-500 mt-1">
     {product.category}
   </p>
-
+<p className="mt-2">
+    ⭐
+    {(product as any).averageRating?.toFixed(1) || 0}
+  </p>
   <p className="mt-2">
     {product.stock > 0
       ? "In Stock"

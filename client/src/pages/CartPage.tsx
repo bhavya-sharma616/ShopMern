@@ -1,11 +1,38 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+import API from "../api/axios";
 import {decreaseQuantity, increaseQuantity, removeFromCart} from "../features/cart/cartSlice"
 
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHooks"
 
 const CartPage = ()=>{
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const cartItems = useAppSelector((state)=>state.cart.cartItems);
+
+    useEffect(() => {
+  const validateCart =
+    async () => {
+      for (const item of cartItems) {
+        try {
+          await API.get(
+            `/products/${item._id}`
+          );
+        } catch (error) {
+          dispatch(
+            removeFromCart(
+              item._id
+            )
+          );
+        }
+      }
+    };
+
+  validateCart();
+}, []);
+
 
     return (
   <div className="max-w-6xl mx-auto p-6">
@@ -22,6 +49,17 @@ const CartPage = ()=>{
         <p className="text-gray-500 mt-2">
           Add products to continue shopping
         </p>
+        <br/><br/>
+
+        <button onClick={
+          () => navigate("/")
+        }
+        className="
+        bg-black text-white
+        py-3 px-3 rounded
+        hover:bg-gray-800
+        transition
+      ">Shop Now</button>
       </div>
     ) : (
       <div className="grid md:grid-cols-3 gap-8">
