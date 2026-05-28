@@ -56,17 +56,33 @@ const cartSlice = createSlice({
             }
         },
 
-        decreaseQuantity:(
-            state,
-            action:PayloadAction<string>
-        )=>{
-            const item = state.cartItems.find(
-                (item)=>item._id === action.payload
-            );
-            if(item){
-                item.quantity-=1
-            }
-        }
+        decreaseQuantity: (
+  state,
+  action: PayloadAction<string>
+) => {
+  const item = state.cartItems.find(
+    (item) =>
+      item._id === action.payload
+  );
+
+  if (item) {
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    } else {
+      state.cartItems =
+        state.cartItems.filter(
+          (cartItem) =>
+            cartItem._id !==
+            action.payload
+        );
+    }
+  }
+
+  localStorage.setItem(
+    "cartItems",
+    JSON.stringify(state.cartItems)
+  );
+},
         
     }
 })

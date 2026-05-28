@@ -50,39 +50,89 @@ const LoginPage = () => {
     }
   };
 
-  return (
-    <div className="flex justify-center items-center min-h-[80vh]">
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-xl rounded-xl p-8 w-full max-w-md flex flex-col gap-4"
-      >
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-          className="border p-3 rounded"
-        />
+ return (
+  <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
+    <div className="w-full max-w-5xl grid md:grid-cols-2 bg-white border border-slate-200 rounded-xl overflow-hidden">
+      
+      <div className="hidden md:flex bg-slate-900 text-white p-10 flex-col justify-center">
+        <p className="uppercase tracking-wide text-xs text-slate-400 mb-3">
+          Welcome Back
+        </p>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-          className="border p-3 rounded"
-        />
+        <h1 className="text-4xl font-semibold leading-tight">
+          Login to
+          <br />
+          Your Account
+        </h1>
 
-        <button className="bg-black text-white px-4 py-2 rounded 
-hover:bg-gray-800 
-hover:scale-105 
-active:scale-95 
-transition 
-duration-200">
-          Login
-        </button>
-      </form>
+      
+      </div>
+
+      <div className="p-8 md:p-10">
+        <div className="mb-8">
+          <h2 className="text-3xl font-semibold text-slate-900">
+            Login
+          </h2>
+
+          <p className="text-slate-500 mt-2">
+            Enter your account details.
+          </p>
+        </div>
+
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-5"
+        >
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Email
+            </label>
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:border-slate-400 transition-colors"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-2">
+              Password
+            </label>
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              onChange={handleChange}
+              className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:border-slate-400 transition-colors"
+            />
+          </div>
+
+          <button
+            className="w-full bg-slate-900 text-white py-3 rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors"
+          >
+            Login
+          </button>
+        </form>
+
+        <p className="text-sm text-slate-500 mt-6 text-center">
+          Don’t have an account?{" "}
+          <span
+            onClick={() =>
+              navigate("/register")
+            }
+            className="text-slate-900 font-medium cursor-pointer hover:underline"
+          >
+            Register
+          </span>
+        </p>
+      </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default LoginPage;

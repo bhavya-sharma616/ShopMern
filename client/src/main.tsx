@@ -18,7 +18,16 @@ ReactDOM.createRoot(
     <Provider store={store}>
       <BrowserRouter>
         <App />
-        <Toaster position="top-right"/>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              borderRadius: "12px",
+              background: "#0f172a",
+              color: "#fff",
+            },
+          }}
+        />
       </BrowserRouter>
     </Provider>
   </React.StrictMode>

@@ -22,64 +22,155 @@ const Navbar = () => {
     navigate("/login");
   };
 
- return (
-  <nav className="flex justify-between items-center px-8 py-4 bg-black text-white shadow-md">
-    <Link
-      to="/"
-      className="text-2xl font-bold"
-    >
-      ShopMern
-    </Link>
-
-    <div className="flex gap-5 items-center">
-      <Link
-        to="/cart"
-        className="hover:text-gray-300 transition duration-200"
-      >
-        Cart ({cartItems.length})
-      </Link>
-
-      {!isAuthenticated ? (
-        <>
-          <Link
-            to="/login"
-        className="hover:text-gray-300 transition duration-200"
+  return (
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200">
+      <div className="
+        max-w-7xl mx-auto
+        px-4 sm:px-6 lg:px-8
+        h-16
+        flex items-center justify-between
+      ">
+        <Link to="/">
+          <h1 className="
+              text-2xl font-extrabold
+              tracking-tight
+              bg-gradient-to-r
+              from-black to-slate-600
+              bg-clip-text text-transparent
+            "
           >
-            Login
+            ShopMERN
+          </h1>
+        </Link>
+
+        <div className="flex gap-5 items-center">
+          <Link
+            to="/cart"
+            className="
+              relative font-medium
+             text-slate-600
+             hover:text-black
+             transition duration-200
+            after:absolute
+            after:left-0
+            after:-bottom-1
+            after:h-[2px]
+            after:w-0
+           after:bg-black
+            after:transition-all
+            hover:after:w-full
+          "    
+        >
+            Cart 
+            <span className="
+              absolute -top-2 -right-3
+             bg-black text-white
+              text-xs font-bold
+              w-5 h-5 rounded-full
+              flex items-center justify-center
+            "
+            >
+              {cartItems.length}
+            </span>
           </Link>
 
-          <Link
-            to="/register"
-            className=" hover:text-gray-300 transition duration-200"
-          >
-            Register
-          </Link>
-        </>
-      ) : (
-        <>
-          <Link
-            to="/profile"
-            className="hover:text-gray-300 transition duration-200"          >
-            Profile
-          </Link>
+          {!isAuthenticated ? (
+            <>
+              <Link
+                to="/login"
+                className="
+  relative font-medium
+  text-slate-600
+  hover:text-black
+  transition duration-200
 
-          <Link
-            to="/admin"
-            className="hover:text-gray-300 transition duration-200"          >
-            Admin
-          </Link>
+  after:absolute
+  after:left-0
+  after:-bottom-1
+  after:h-[2px]
+  after:w-0
+  after:bg-black
+  after:transition-all
+  hover:after:w-full
+"         >
+                Login
+              </Link>
 
-          <button
-            onClick={handleLogout}
-            className="bg-red-700 text-white px-4 py-2 rounded hover:bg-gray-800 hover:scale-105 active:scale-95 transition duration-200"
-          >
-            Logout
-          </button>
-        </>
-      )}
-    </div>
-  </nav>
-);
+              <Link
+                to="/register"
+                className="
+  relative font-medium
+  text-slate-600
+  hover:text-black
+  transition duration-200
+
+  after:absolute
+  after:left-0
+  after:-bottom-1
+  after:h-[2px]
+  after:w-0
+  after:bg-black
+  after:transition-all
+  hover:after:w-full
+"
+              >
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/profile"
+                className="
+  relative font-medium
+  text-slate-600
+  hover:text-black
+  transition duration-200
+
+  after:absolute
+  after:left-0
+  after:-bottom-1
+  after:h-[2px]
+  after:w-0
+  after:bg-black
+  after:transition-all
+  hover:after:w-full
+"        >
+                Profile
+              </Link>
+
+              <Link
+                to="/admin"
+                className="
+  relative font-medium
+  text-slate-600
+  hover:text-black
+  transition duration-200
+
+  after:absolute
+  after:left-0
+  after:-bottom-1
+  after:h-[2px]
+  after:w-0
+  after:bg-black
+  after:transition-all
+  hover:after:w-full
+"        >
+                Admin
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className="bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 transition duration-200"
+              >
+                Logout
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;

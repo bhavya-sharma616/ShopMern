@@ -95,7 +95,11 @@ const EditProductPage = () => {
 
     return (
     <div className="max-w-xl mx-auto mt-10">
-      <h1 className="text-3xl font-bold mb-6">
+      <h1 className="text-2xl
+md:text-3xl
+font-semibold
+tracking-tight
+text-slate-900 mb-6">
         Edit Product
       </h1>
 
