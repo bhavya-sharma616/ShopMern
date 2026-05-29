@@ -12,7 +12,7 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 const app = express();
 
 app.use(cors({
-  origin: "https://shopmern-client.onrender.com",
+  origin: "https://shopmern-1.onrender.com",
   credentials: true
 }));
 app.use(express.json());
