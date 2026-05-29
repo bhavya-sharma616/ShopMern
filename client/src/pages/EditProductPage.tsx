@@ -24,7 +24,7 @@ const EditProductPage = () => {
     const fetchProduct = async () => {
       try {
         const res = await API.get(
-          `/products/${id}`
+          `/admin/products/${id}`
         );
 
         const product =

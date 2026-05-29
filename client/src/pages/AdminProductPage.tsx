@@ -11,7 +11,7 @@ const AdminProductsPage = () => {
   const fetchProducts = async () => {
     try {
       const res = await API.get(
-        "/products"
+        "/admin/products"
       );
 
       setProducts(res.data.products);
@@ -28,7 +28,7 @@ const AdminProductsPage = () => {
   ) => {
     try {
       await API.delete(
-        `/products/${id}`
+        `/admin/products/${id}`
       );
 
       setProducts((prev) =>
