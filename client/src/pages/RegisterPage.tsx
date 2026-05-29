@@ -31,6 +31,8 @@ const RegisterPage = () => {
       );
 
       console.log(res.data);
+      toast.success("Registration successful! Please login.");
+      navigate("/login");
     } catch (error) {
       console.error(error);
         toast.error("Something went wrong");
