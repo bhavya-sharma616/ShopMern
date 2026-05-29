@@ -69,7 +69,7 @@ const EditProductPage = () => {
 
     try {
       await API.put(
-        `/products/${id}`,
+        `admin/products/${id}`,
         {
           ...formData,
           price: Number(

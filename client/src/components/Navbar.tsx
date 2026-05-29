@@ -9,13 +9,11 @@ const Navbar = () => {
 
   const dispatch = useAppDispatch();
 
-  const { isAuthenticated } =
+  const { isAuthenticated, user } =
     useAppSelector((state) => state.auth);
 
   const { cartItems } = useAppSelector((state) => state.cart);
-  <Link to="/cart">
-    Cart ({cartItems.length})
-  </Link>
+  
   const handleLogout = () => {
     dispatch(logout());
 
@@ -138,7 +136,7 @@ const Navbar = () => {
 "        >
                 Profile
               </Link>
-
+{user?.role === "admin" && (
               <Link
                 to="/admin"
                 className="
@@ -158,7 +156,7 @@ const Navbar = () => {
 "        >
                 Admin
               </Link>
-
+)}
               <button
                 onClick={handleLogout}
                 className="bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 transition duration-200"

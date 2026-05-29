@@ -47,52 +47,43 @@ export const loginUser = async (
 ): Promise<void> => {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
 
     if (!user) {
-      res.status(400).json({
-        status: false,
-        message: "Invalid Credentials"
-      })
+      res.status(400).json({ success: false, message: "Invalid Credentials" });
       return;
     }
+
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      res.status(400).json({
-        status: false,
-        message: "Incorrect password!"
-      })
+      res.status(400).json({ success: false, message: "Incorrect password!" });
       return;
     }
+
     const token = generateToken(user._id.toString());
+
+    const { password: userPassword, ...userObj } = user.toObject();
+
     res.status(200).json({
       success: true,
       message: "Login successful",
       token,
-      user,
+      user: userObj,
     });
-    console.log(token)
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Server Error",
-    });
+    res.status(500).json({ success: false, message: "Server Error" });
   }
-}
+};
 
 export const getProfile = async (
   req: AuthRequest,
   res: Response
 ): Promise<void> => {
   try {
-    res.status(200).json({
-      success: true,
-      user: req.user,
-    });
+    // Re-fetch without password instead of using req.user directly
+    const user = await User.findById(req.user?._id).select("-password");
+    res.status(200).json({ success: true, user });
   } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Server Error",
-    });
+    res.status(500).json({ success: false, message: "Server Error" });
   }
 };

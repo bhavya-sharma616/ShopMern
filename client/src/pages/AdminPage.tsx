@@ -26,7 +26,7 @@ const AdminPage = () => {
 
     try {
       await API.post(
-        "/products",
+        "admin/products",
         {
           ...formData,
           price: Number(formData.price),

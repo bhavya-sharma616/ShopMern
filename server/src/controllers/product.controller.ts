@@ -9,6 +9,7 @@ export const createProduct = async (
   req: Request,
   res: Response
 ): Promise<void> => {
+  console.log("createProduct hit", req.body);
   try {
     const product =
       await Product.create(req.body);
@@ -17,6 +18,7 @@ export const createProduct = async (
       success: true,
       product,
     });
+    
   } catch (error) {
     res.status(500).json({
       success: false,

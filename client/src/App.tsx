@@ -51,14 +51,14 @@ function App() {
               <ProtectedRoute>
                 <CartPage />
               </ProtectedRoute>
-            
-          }
+
+            }
           />
 
           <Route
             path="/admin"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requireAdmin>
                 <AdminPage />
               </ProtectedRoute>
             }
@@ -67,7 +67,7 @@ function App() {
           <Route
             path="/admin/products"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requireAdmin>
                 <AdminProductsPage />
               </ProtectedRoute>
             }
@@ -81,7 +81,7 @@ function App() {
           <Route
             path="/admin/products/:id"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requireAdmin>
                 <EditProductPage />
               </ProtectedRoute>
             }
